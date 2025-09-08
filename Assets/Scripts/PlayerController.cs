@@ -4,7 +4,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 4f;
+    float _initialSpeed = 4f;
+    float _speed;
     NavMeshAgent agent;
     Vector3 inputDirection;
 
@@ -23,8 +24,17 @@ public class PlayerController : MonoBehaviour
 
         if (inputDirection.sqrMagnitude > 0.01f)
         {
+
+        if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.LeftShift))
+        {
+            _speed = _initialSpeed * 2; // Raddoppia la velocità
+        }
+        else
+        {
+            _speed = _initialSpeed;
+        }
             Vector3 target = transform.position + inputDirection * 1.5f;
-            agent.speed = moveSpeed;
+            agent.speed = _speed;
             agent.SetDestination(target);
 
             Quaternion look = Quaternion.LookRotation(inputDirection, Vector3.up);

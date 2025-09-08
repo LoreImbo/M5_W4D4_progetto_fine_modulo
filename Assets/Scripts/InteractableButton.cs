@@ -8,13 +8,11 @@ public class InteractableButton : MonoBehaviour
     public float interactionRange = 2f;
     public DoorController doorToToggle;
     public Canvas worldPrompt;
-    NavMeshSurface navMeshSurface;
     Transform player;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        navMeshSurface = FindObjectOfType<NavMeshSurface>();
         if (worldPrompt) worldPrompt.gameObject.SetActive(false);
     }
 
@@ -38,14 +36,11 @@ public class InteractableButton : MonoBehaviour
 
     void Toggle()
     {
-        if (doorToToggle != null) doorToToggle.ToggleDoor();
-        if (navMeshSurface != null)
+        if (doorToToggle != null)
         {
-            navMeshSurface.BuildNavMesh();
+            doorToToggle.ToggleDoor();
+            Debug.Log("Pulsante premuto, stato porta: " + (doorToToggle.isOpen ? "Aperta" : "Chiusa"));
         }
-        else
-        {
-            Debug.LogWarning("NavMeshSurface non trovato.");
-        }
+        else Debug.LogWarning("Nessuna porta assegnata al pulsante.");
     }
 }

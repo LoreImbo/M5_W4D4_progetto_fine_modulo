@@ -1,20 +1,16 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class MainMenuUI : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
-    public Button startButton;
-    public Button exitButton;
-    public string gameplaySceneName = "GameplayScene";
-
-    void Start()
+    public void StartGame()
     {
-        startButton.onClick.AddListener(() => {
-            GameManager.Instance.StartGame(gameplaySceneName);
-        });
+        Time.timeScale = 1f; // Assicura che il gioco parta con il tempo normale
+        SceneManager.LoadScene("Level1");
+    }
 
-        exitButton.onClick.AddListener(() => {
-            GameManager.Instance.ExitGame();
-        });
+    public void QuitGame()
+    {
+        Debug.Log("Uscita dal gioco");
     }
 }
