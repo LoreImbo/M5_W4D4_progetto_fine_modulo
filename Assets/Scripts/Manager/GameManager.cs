@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public void OnPlayerCaught()
     {
         Debug.Log("Player catturato! Game Over.");
-        SceneManager.LoadScene(mainMenuSceneName);
+        SceneManager.LoadScene("GameOverMenu");
     }
 
     public void StartGame(string gameplayScene)
