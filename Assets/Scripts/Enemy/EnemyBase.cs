@@ -1,21 +1,17 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
 public abstract class EnemyBase : MonoBehaviour
 {
     public enum State { Idle, Patrol, Chase, Return }
     public State currentState = State.Idle;
 
-    [Header("References")]
     public Transform player;
     protected NavMeshAgent agent;
     protected Vector3 lastKnownPlayerPos;
 
-    [Header("Vision")]
     public FieldOfView fov;
 
-    [Header("Return")]
     protected Vector3 previousPositionBeforeChase;
 
     protected virtual void Awake()

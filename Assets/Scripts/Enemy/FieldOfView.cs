@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Transform))]
 public class FieldOfView : MonoBehaviour
 {
     public float viewRadius = 8f;
